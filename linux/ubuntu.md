@@ -8,7 +8,7 @@ Copy IMG/ISO to a USB device
 
 ## HP Laptop
 - F9 for boot menu
-- secure boot password: `Fxxfxx5XXXXX`
+- secure boot password: `F--f--5...`
 
 ## Keyboard
 **NOTE**: Swap Fn keys: `Fn+Tab+F`
