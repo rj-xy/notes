@@ -6,36 +6,39 @@
 # ~/.bash_aliases
 #
 
-# sudo uname to prompt for password before running
-alias update='sudo uname && flatpak uninstall --unused -y && flatpak update -y && sudo snap refresh && sudo apt update && sudo apt upgrade -y && sudo fwupdmgr refresh --force && sudo fwupdmgr update'
+alias get_idf='. ~/.espressif/v5.5.2/esp-idf/export.sh'
 
-alias clear-dns='sudo cp /etc/resolv.conf-bak /etc/resolv.conf'
+alias update-ghosty='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"'
+alias update-lazydocker='curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash'
+alias update-gah='gah install lazygit --unattended && gah install lazydocker --unattended'
+alias update-shellcheck='gah install koalaman/shellcheck --unattended'
+
+# sudo uname to prompt for password before running
+function update () {
+  sudo uname
+  gah update
+  update-gah
+  update-shellcheck
+  flatpak uninstall --unused -y
+  flatpak update -y
+  sudo snap refresh
+  sudo apt update
+  sudo apt upgrade -y
+  update-ghosty
+  sudo fwupdmgr refresh --force
+  sudo fwupdmgr update
+}
+
 alias journalctl='sudo journalctl'
 
-# stop all containers:
-alias docker-kill='docker kill $(docker ps -q)'
-# remove all containers
-alias docker-rm='docker rm $(docker ps -a -q)'
-# remove all docker images
-alias docker-rmi='docker rmi -f $(docker images -q)'
-# remove all docker volumes
-alias docker-rmvol='docker volume ls -qf dangling=true | xargs -r docker volume rm'
-# stop & remove all containers/volumes
-alias docker-clean='docker-kill || true && docker-rm || true && docker-rmvol || true && docker-rmi'
-alias docker-cl='docker-kill || true && docker-rm || true && docker-rmvol'
+alias edit='/usr/bin/micro'
+alias e='/usr/bin/micro'
 
-alias dc='docker-compose'
+export AWS_PROFILE="tech-dev"
 
-alias git-wip='git add . && git commit -a -m "#WIP"'
-alias git-fetch='git fetch --all --prune'
-alias git-log='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)"'
-alias git-lg='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)"'
-
-alias git-rebase='git rebase -i origin/staging'
-alias git-staging='git checkout -B "staging" "origin/staging"'
-alias git-ff='git checkout -B $(git branch --show-current) $(git remote show)/$(git branch --show-current)'
-alias git-push='git push --force-with-lease'
-
-alias kill-node="killall --signal SIGKILL -exact node"
-alias kill-ssh="killall ssh"
+SAURON_ROOT=~/src/sauron
+source $SAURON_ROOT/infrastructure/scripts/git.sh
+source $SAURON_ROOT/infrastructure/scripts/hubs.sh
+source $SAURON_ROOT/infrastructure/scripts/docker.sh
+source $SAURON_ROOT/infrastructure/scripts/jumpbox.sh
 ```
