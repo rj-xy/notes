@@ -87,25 +87,38 @@ sudo pro attach <token>
 pro status --all
 ```
 
-## Microsoft sources for 24.04
-```bash
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/ubuntu/24.04/prod noble main" > /etc/apt/sources.list.d/microsoft-ubuntu-noble-prod.list'
-sudo rm microsoft.gpg
+## Microsoft defender
+
+Following this: https://learn.microsoft.com/en-us/defender-endpoint/linux-install-manually#ubuntu-and-debian-systems
+
+### Setting up microsoft sources
+```
+# Get system info
+hostnamectl
+
+# curl -o microsoft.list https://packages.microsoft.com/config/[distro]/[version]/[channel].list
+curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/24.04/prod.list
+
+# sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-[channel].list
+sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-prod.list
+
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-prod.gpg > /dev/null
+sudo chmod o+r /usr/share/keyrings/microsoft-prod.gpg
 ```
 
-### Defender
+### Install Defender
 ```bash
 sudo apt-get install mdatp
 
-mdatp exclusion folder add --path ~/src
-mdatp exclusion folder add --path ~/rj
-
+sudo mdatp exclusion folder add --path ~/src
+sudo mdatp exclusion folder add --path ~/rj-xy
 sudo mdatp exclusion process add --name node
-sudo mdatp exclusion process add --name deno
+# List exclusions
+sudo mdatp exclusion list
+```
 
-# https://learn.microsoft.com/en-us/defender-endpoint/linux-install-manually#ubuntu-and-debian-systems-1
+### Register Defender (See Tom for the script)
+```bash
 # Get WindowsDefenderATPOnboardingPackage.zip from Tom
 unzip WindowsDefenderATPOnboardingPackage.zip
 # edit MicrosoftDefenderATPOnboardingLinuxServer.py -> remove the \o from L11
@@ -118,9 +131,6 @@ mdatp health --field org_id
 mdatp health --field healthy
 
 # Add an exclusion
-sudo mdatp exclusion folder add --path [Sauron root path, e.g. /home/rj/src]
-sudo mdatp exclusion process add --name jest
-sudo mdatp exclusion process add --name node
 sudo mdatp exclusion list
 
 # Enable stats
@@ -139,6 +149,7 @@ mdatp threat list
 ### Intune
 Install docos:
 https://learn.microsoft.com/en-us/mem/intune/user-help/microsoft-intune-app-linux
+
 ```bash
 # Install Edge
 
@@ -146,7 +157,9 @@ sudo apt install intune-portal
 systemctl --user daemon-reload
 
 journalctl --follow
-# Open intune App - IMPORTANT: after email, click on "use other method", do not use Password auth
+# Open intune App - IMPORTANT: after email, enter password, then click on "use other method" ** do not use Password auth!!!
+# Select "Approve a request on my Microsoft Auth app
+# Register!
 ```
 
 Troubleshooting:
