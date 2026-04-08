@@ -78,6 +78,14 @@ sudo ufw enable
 sudo ufw status verbose
 ```
 
+## Ubuntu PRO
+Get an ubuntu PRO licence/key: https://ubuntu.com/pro/subscribe
+```bash
+sudo pro attach <token>
+# Show all modules enabled - default ones are fine
+pro status --all
+```
+
 ## Microsoft sources for 24.04
 ```bash
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
