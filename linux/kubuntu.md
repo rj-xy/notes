@@ -85,6 +85,14 @@ sudo apt install ubuntu-advantage-tools
 sudo pro attach <token>
 # Show all modules enabled - default ones are fine
 pro status --all
+
+sudo apt install ubuntu-fips
+sudo pro enable fips-updates
+
+pro status --all
+
+# Reinstall NVidia drivers
+sudo ubuntu-drivers autoinstall
 ```
 
 ## Microsoft defender
