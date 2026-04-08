@@ -81,6 +81,7 @@ sudo ufw status verbose
 ## Ubuntu PRO
 Get an ubuntu PRO licence/key: https://ubuntu.com/pro/subscribe
 ```bash
+sudo apt install ubuntu-advantage-tools
 sudo pro attach <token>
 # Show all modules enabled - default ones are fine
 pro status --all
