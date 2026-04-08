@@ -160,6 +160,9 @@ journalctl --follow
 # Open intune App - IMPORTANT: after email, enter password, then click on "use other method" ** do not use Password auth!!!
 # Select "Approve a request on my Microsoft Auth app
 # Register!
+
+# Open the "Intune" app again - follow prompts - should then show "Compliant" for Stafflink
+# Send a screenshot to Tom
 ```
 
 Troubleshooting:
