@@ -121,8 +121,6 @@ sudo mdatp exclusion list
 ```bash
 # Get WindowsDefenderATPOnboardingPackage.zip from Tom
 unzip WindowsDefenderATPOnboardingPackage.zip
-# edit MicrosoftDefenderATPOnboardingLinuxServer.py -> remove the \o from L11
-nano ./MicrosoftDefenderATPOnboardingLinuxServer.py
 # Register
 sudo python3 MicrosoftDefenderATPOnboardingLinuxServer.py
 
@@ -130,7 +128,7 @@ sudo python3 MicrosoftDefenderATPOnboardingLinuxServer.py
 mdatp health --field org_id
 mdatp health --field healthy
 
-# Add an exclusion
+# List exclusions
 sudo mdatp exclusion list
 
 # Enable stats
