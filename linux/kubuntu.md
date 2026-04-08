@@ -11,9 +11,6 @@ sudo apt install -y flameshot bash-completion qalculate-gtk \
   jq python-is-python3 python3-pip postgresql-client
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-flatpak install flathub net.cozic.joplin_desktop
-flatpak install flathub com.tomjwatson.Emote
 ```
 
 ### Node
@@ -69,7 +66,6 @@ sudo apt install fprintd
 sudo fprintd-enroll
 sudo pam-auth-update
 # OR Settings - > User - > Add finger
-
 ```
 
 
@@ -78,6 +74,8 @@ sudo pam-auth-update
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw enable
+# List rules
+sudo ufw status verbose
 ```
 
 ## Microsoft sources for 24.04
