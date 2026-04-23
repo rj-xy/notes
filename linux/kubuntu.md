@@ -121,6 +121,11 @@ sudo apt-get install mdatp
 sudo mdatp exclusion folder add --path ~/src
 sudo mdatp exclusion folder add --path ~/rj-xy
 sudo mdatp exclusion process add --name node
+sudo mdatp exclusion process add --name brave
+sudo mdatp exclusion process add --name code
+sudo mdatp exclusion process add --name msedge
+sudo mdatp exclusion process add --name node
+
 # List exclusions
 sudo mdatp exclusion list
 ```
