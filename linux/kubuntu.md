@@ -7,8 +7,9 @@
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y flameshot bash-completion qalculate-gtk \
-    build-essential software-properties-gtk git \
-  jq python-is-python3 python3-pip postgresql-client
+  build-essential software-properties-gtk git \
+  jq python-is-python3 python3-pip postgresql-client \
+  shellcheck shfmt
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
