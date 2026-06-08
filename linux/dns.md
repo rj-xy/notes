@@ -9,7 +9,7 @@ cat /etc/resolv.conf
 ```
 
 ```bash
-sudo nano /etc/systemd/resolved.conf
+sudo micro /etc/systemd/resolved.conf
 ```
 
 ```ini
