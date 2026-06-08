@@ -1,48 +1,24 @@
 # File: ~/.bash_aliases
 
 ```sh
-#! /bin/bash
-#
-# ~/.bash_aliases
-#
+#!/usr/bin/env bash
 
 alias get_idf='. ~/.espressif/v5.5.2/esp-idf/export.sh'
-
-alias update-ghosty='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"'
-# alias update-lazydocker='curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash'
-alias update-gah='bash -c "$(curl -fsSL https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh)"'
-alias update-lazygit='gah install lazygit --unattended'
-alias update-lazydocker='gah install lazydocker --unattended'
-alias update-shellcheck='gah install koalaman/shellcheck --unattended'
 
 # sudo uname to prompt for password before running
 function update () {
   sudo uname
-  gah update
-  update-gah
-  update-lazydocker
-  update-lazygit
-  update-shellcheck
   flatpak uninstall --unused -y
   flatpak update -y
   sudo snap refresh
   sudo apt update
   sudo apt upgrade -y
-  update-ghosty
   sudo fwupdmgr refresh --force
   sudo fwupdmgr update
 }
 
-alias journalctl='sudo journalctl'
+alias journalctl='echo "⚠️⚠️⚠️Try lazyjournal⚠️⚠️⚠️" && sudo journalctl'
 
 alias edit='/usr/bin/micro'
 alias e='/usr/bin/micro'
-
-export AWS_PROFILE="tech-dev"
-
-SAURON_ROOT=~/src/sauron
-source $SAURON_ROOT/infrastructure/scripts/git.sh
-source $SAURON_ROOT/infrastructure/scripts/hubs.sh
-source $SAURON_ROOT/infrastructure/scripts/docker.sh
-source $SAURON_ROOT/infrastructure/scripts/jumpbox.sh
 ```
