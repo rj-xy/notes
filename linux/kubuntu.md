@@ -12,6 +12,9 @@ sudo apt install -y flameshot bash-completion qalculate-gtk \
   shellcheck shfmt
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install homebrew
+# install aws-cli, .....
 ```
 
 ### Node
@@ -105,8 +108,10 @@ Following this: https://learn.microsoft.com/en-us/defender-endpoint/linux-instal
 # Get system info
 hostnamectl
 
+# Better way: # Better way: https://github.com/microsoft/shell-intune-samples/tree/master/Linux/Intune%20Installer
+
 # curl -o microsoft.list https://packages.microsoft.com/config/[distro]/[version]/[channel].list
-curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/24.04/prod.list
+curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/26.04/prod.list
 
 # sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-[channel].list
 sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-prod.list
@@ -117,7 +122,10 @@ sudo chmod o+r /usr/share/keyrings/microsoft-prod.gpg
 
 ### Install Defender
 ```bash
-sudo apt-get install mdatp
+
+# # Better way: https://github.com/microsoft/shell-intune-samples/tree/master/Linux/Intune%20Installer
+# https://packages.microsoft.com/ubuntu/26.04/prod/pool/main/m/mdatp/
+sudo apt install mdatp
 
 sudo mdatp exclusion folder add --path ~/src
 sudo mdatp exclusion folder add --path ~/rj-xy
@@ -164,6 +172,8 @@ https://learn.microsoft.com/en-us/mem/intune/user-help/microsoft-intune-app-linu
 
 ```bash
 # Install Edge
+
+# Better way: https://github.com/microsoft/shell-intune-samples/tree/master/Linux/Intune%20Installer
 
 sudo apt install intune-portal
 systemctl --user daemon-reload
