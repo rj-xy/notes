@@ -16,6 +16,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# ⚠️⚠️ .bash_aliases OR .bashrc.aliases ? ⚠️⚠️
 if [ -e $HOME/.bashrc.aliases ] ; then
    source $HOME/.bashrc.aliases
 fi
